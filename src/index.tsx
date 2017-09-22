@@ -12,7 +12,7 @@ import graphqlServerUrl from './graphqlServerUrl';
 
 import routes from './routes';
 
-console.log('Hello index.tsx');
+console.log('Hello index.tsx!');
 
 // Connects to a Graphql Server in a diferent domain
 Relay.injectNetworkLayer(

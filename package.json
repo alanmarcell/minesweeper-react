@@ -7,7 +7,9 @@
   "scripts": {
     "lint": "tslint ./src/**/*.ts ./src/**/*.test.ts ./src/**/*.d.ts",
     "js": "rimraf dist && tsc --skipLibCheck",
-    "tsc:w": "tsc -w --skipLibCheck",
+    "babel": "babel dist-esnext --out-dir dist",
+    "babel:w": " rimraf dist && babel -w dist-esnext -d dist --source-maps",
+    "tsc:w": "rimraf dist-esnext && tsc -w --skipLibCheck",
     "pretest": "npm-run-all --parallel download-graphql-schema js",
     "mocha": "mocha ./dist/**/*.js --require babel-polyfill --compilers js:babel-register",
     "test": "nyc npm run mocha && nyc report --reporter=html --reporter=text-lcov > coverage.lcov && f() { EXIT=0; codecov --token=f1381414-f5ee-4356-b0b0-716d9e5abbe0 || exit $EXIT; }; f",

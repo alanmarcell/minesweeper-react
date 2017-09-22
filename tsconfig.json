@@ -8,7 +8,7 @@
     "target": "esnext",
     "sourceMap": true,
     "listFiles": false,
-    "outDir": "dist/",
+    "outDir": "dist-esnext/",
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "lib": [
@@ -24,6 +24,6 @@
     "src/**/*.test.ts"
   ],
   "exclude": [
-    "node_modules/"
+    "node_modules"
   ]
 }
