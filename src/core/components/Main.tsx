@@ -10,7 +10,7 @@ class Main extends React.Component<any, any> {
         return (
             <div>
                 <Header app={viewer.app} menu={viewer.menu} />
-                <main>
+                <main className="container">
                     {children}
                 </main>
                 <Footer />

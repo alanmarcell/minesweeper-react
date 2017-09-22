@@ -93,6 +93,7 @@
     "ptz-log": "^1.0.0",
     "ptz-menu-domain": "^1.0.0",
     "ptz-user-domain": "^1.2.5",
+    "ramda": "^0.24.1",
     "react": "^15.4.2",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^15.4.2",

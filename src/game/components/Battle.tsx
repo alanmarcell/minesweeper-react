@@ -1,104 +1,36 @@
+import { IBattle, IField, IFieldConfig } from 'minesweeper-core';
+import R from 'ramda';
 import React from 'react';
-import Relay from 'react-relay';
+import Field from './Field';
 
-import { IUserArgs, User } from 'ptz-user-domain';
+const newPos = (x: number, y: number) => {
+    return {
+        x, y, isBomb: false, nearBombs: 0,
+        opened: false, marked: 0, isValid: true
+    };
+};
 
-import SaveUserMutation from '../mutations/SaveUserMutation';
+const getEmptyField = (fieldConfig: IFieldConfig) => {
+    const widthRange = R.range(0, fieldConfig.width);
+    const heightRange = R.range(0, fieldConfig.height);
 
-import CreateUserForm from './CreateUserForm';
-import UserComponent from './User';
+    return widthRange.map(i => heightRange.map(j => newPos(i, j)));
+};
 
-class UserReport extends React.Component<any, any> {
-
-    constructor(props) {
-        super(props);
-        this.state = { user: {} };
-    }
-
-    setLimit = (e) => {
-        const newLimit = Number(e.target.value);
-        this.props.relay.setVariables({ limit: newLimit });
-        console.log('newLimit', newLimit);
-        console.log('relay', this.props.relay);
-    }
-
-    createUser = (userArgs) => {
-        var user = new User(userArgs);
-        this.setState({ user });
-        console.log('UserReport createUser() user', user);
-
-        if (!user.isValid())
-            return;
-
-        Relay.Store.commitUpdate(
-            new SaveUserMutation({
-                user,
-                viewer: this.props.viewer
-            }),
-            {
-                onFailure: transaction => {
-                    console.log('onFailure response', transaction);
-                },
-                onSuccess: response => {
-                    console.log('onSuccess response', response);
-                    console.log('user response', response.saveUser.userEdge.node);
-                    user = new User(response.saveUser.userEdge.node);
-                    this.setState({ user: user.isValid() ? {} : user });
-                }
-            }
-        );
-    }
-
-    render() {
-        const content = this.props.viewer.userConnection.edges.map(edge => {
-            return <UserComponent key={edge.node.id} user={edge.node} />;
-        });
-
-        console.log('rendering UserReport user:', this.state.user);
-
-        return (
-            <section>
-                <h1>Users2</h1>
-                <CreateUserForm createUser={this.createUser} user={this.state.user} />
-                <label htmlFor="pagination-limit">Showing</label>
-                <select id="pagination-limit" onChange={this.setLimit}
-                    defaultValue={this.props.relay.variables.limit}>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                </select>
-                <ul>
-                    {content}
-                </ul>
-            </section>);
-    }
-
-    private getNewUser() {
-        return new User({
-            displayName: '',
-            email: '',
-            userName: ''
-        });
-    }
+const startBattle = (fieldConfig: IFieldConfig): IBattle => {
+    const field: IField = getEmptyField(fieldConfig);
+    return { field, isOver: false, marks: 0, bombsMarked: 0, winner: null };
+};
+interface IBattleProps {
+    fieldConfig: IFieldConfig;
 }
 
-export default Relay.createContainer(UserReport, {
-    initialVariables: {
-        limit: 20
-    },
-    fragments: {
-        viewer: () => Relay.QL`
-        fragment on Viewer{
-            id,
-            userConnection(first: $limit){
-                edges{
-                    node{
-                        id,
-                        ${UserComponent.getFragment('user')},
-                        errors
-                    }
-                }
-            }
-        }
-       `
-    }
-});
+const Battle: React.StatelessComponent<IBattleProps> = ({ fieldConfig }) => {
+
+    const battle = startBattle(fieldConfig);
+    const field = battle.field as IField;
+
+    return <Field field={field} />;
+};
+
+export default Battle;
