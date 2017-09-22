@@ -1,0 +1,11 @@
+{
+  "generator-ptz-react": {
+    "promptValues": {
+      "appname": "minesweeper-react",
+      "githubAuthor": "alanmarcell",
+      "codecovToken": "f1381414-f5ee-4356-b0b0-716d9e5abbe0",
+      "graphqlServerUrl": "http://localhost:3011/graphql",
+      "graphqlSchemaUrl": "http://localhost:3011/public/schema.json"
+    }
+  }
+}
