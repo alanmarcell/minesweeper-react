@@ -15,9 +15,7 @@ const Menu: React.StatelessComponent<IMenuProps> = ({ menu }) => {
         <nav>
             <label htmlFor="cb-menu">{menu.label}</label>
             <input type="checkbox" name="cb-menu" id="cb-menu" />
-            <ul>
-                {menuItems}
-            </ul>
+            {menuItems}
         </nav>
     );
 };

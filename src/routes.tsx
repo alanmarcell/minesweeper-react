@@ -4,6 +4,7 @@ import Route from 'react-router/lib/Route';
 
 import Home from './core/components/Home';
 import Main from './core/components/Main';
+import Position from './game/components/Position';
 import UserReport from './users/components/UserReport';
 
 import ViewerQueries from './core/queries/ViewerQueries';
@@ -14,6 +15,10 @@ export default (
         component={Main}
         queries={ViewerQueries}
     >
+        <Route
+            path="minesweeper"
+            component={Position}
+        />
         <IndexRoute
             component={Home}
         />

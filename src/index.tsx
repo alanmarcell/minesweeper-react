@@ -1,4 +1,6 @@
+import 'bootstrap';
 import createHashHistory from 'history/lib/createHashHistory';
+// import 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
@@ -6,7 +8,6 @@ import useRelay from 'react-router-relay';
 import applyRouterMiddleware from 'react-router/lib/applyRouterMiddleware';
 import Router from 'react-router/lib/Router';
 import useRouterHistory from 'react-router/lib/useRouterHistory';
-
 import graphqlServerUrl from './graphqlServerUrl';
 // import UserReport from './users/components/UserReport';
 

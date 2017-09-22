@@ -1,6 +1,7 @@
 import { IMenuItem } from 'ptz-menu-domain';
 import React from 'react';
 
+import { IndexLink, Link } from 'react-router';
 interface IMenuItemProps {
     menuItem: IMenuItem;
 }
@@ -16,7 +17,7 @@ function getSubItems(menuItem: IMenuItem) {
 const MenuItem: React.StatelessComponent<IMenuItemProps> = ({ menuItem }) => {
     return (
         <li>
-            <a href={menuItem.link} className="active">{menuItem.label}</a>
+            <Link to={menuItem.link} activeClassName="active">{menuItem.label}</Link>
             {getSubItems(menuItem)}
         </li>
     );

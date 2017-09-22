@@ -3,7 +3,7 @@ import React from 'react';
 const Home: React.StatelessComponent<any> = () => {
     return (
         <section className="welcome">
-            <p>Welcome to Polutz!</p>
+            <p>Welcome to TESTE!</p>
             <ul>
                 <li>React</li>
                 <li>Relay</li>
