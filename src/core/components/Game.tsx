@@ -5,9 +5,9 @@ import Battle from '../../game/components/Battle';
 const Game: React.StatelessComponent<any> = () => {
 
     const fieldConfig: IFieldConfig = {
-        width: 3,
-        height: 3,
-        bombs: 3
+        width: 9,
+        height: 9,
+        bombs: 9
     };
     return (
         <section>

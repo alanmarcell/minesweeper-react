@@ -8,7 +8,7 @@ interface IRowProps {
 const Row: React.StatelessComponent<IRowProps> = ({ field }) => {
 
     const rowItens = field.map((r, i) => (<Col cols={r} key={i} />));
-    return (<div className="row">{rowItens}</div>);
+    return (<div>{rowItens}</div>);
 };
 
 interface IColProps {
@@ -19,18 +19,25 @@ const Col: React.StatelessComponent<IColProps> = ({ cols }) => {
     // R.map(rows, (position) => <Position position={position} />);
 
     const colsItens = cols.map((p, i) => (<Position position={p} key={i} />));
-    return (<div className="col col-sm-2">{colsItens}</div>);
+    return (<div>{colsItens}</div>);
 };
 
 interface IPositionProps {
     position: IPosition;
 }
 
+const divStyle = {
+    height: '50px',
+    width: '50px',
+    background: '#999',
+    display: 'inline-block'
+};
+
 const Position: React.StatelessComponent<IPositionProps> =
     ({ position }) => {
         console.log(position);
         const value = position.opened ? 'x' : 'B';
-        return (<p >{value}</p>);
+        return (<div style={divStyle} >{value}</div>);
     };
 
 export default Row;

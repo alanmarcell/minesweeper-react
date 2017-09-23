@@ -8,7 +8,7 @@ class Main extends React.Component<any, any> {
         const { viewer, children } = this.props;
 
         return (
-            <div>
+            <div className="jumbotron">
                 <Header app={viewer.app} menu={viewer.menu} />
                 <main className="container">
                     {children}
